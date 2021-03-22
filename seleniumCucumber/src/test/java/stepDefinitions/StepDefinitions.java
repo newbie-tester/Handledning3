@@ -2,6 +2,8 @@ package stepDefinitions;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,16 +39,32 @@ public class StepDefinitions {
 
 	@When("I press add")
 	public void i_press_add() throws InterruptedException {
-		WebElement addButton = driver.findElement(By.xpath(
-				"/html/body/table/tbody/tr/td[1]/table[2]/tbody/tr[1]/td[2]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/form/p[4]/input"));
-		addButton.click();
+//		WebElement addButton = driver.findElement(By.xpath(
+//				"/html/body/table/tbody/tr/td[1]/table[2]/tbody/tr[1]/td[2]/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/form/p[4]/input"));
+//		addButton.click();
+//		WebElement addButtonByCSS = driver.findElement(By.cssSelector("input[type=button]"));
+		WebElement addButtonByCSS = driver.findElement(By.cssSelector("input[value='Find Addition']"));
+		addButtonByCSS.click();
 	}
 
 	@Then("the result should be {int} on the screen")
 	public void the_result_should_be_on_the_screen(Integer int1) throws InterruptedException {
-		WebElement result = driver.findElement(By.name("answer"));
-		assertEquals("579", result.getAttribute("value"));
-		Thread.sleep(3000);
+//		WebElement result = driver.findElement(By.name("answer"));
+//		assertEquals("579", result.getAttribute("value"));
+//		Thread.sleep(3000);
+//		driver.quit();
+
+//		List<WebElement> inputFields = driver.findElements(By.className("regfont"));
+//		List<WebElement> inputFields = driver.findElements(By.cssSelector("input.regfont"));
+//		List<WebElement> inputFields = driver.findElements(By.cssSelector("input[name]"));
+		List<WebElement> inputFields = driver.findElements(By.cssSelector("input[class]"));
+		for (WebElement e : inputFields) {
+			System.out.println(e.getAttribute("name"));
+		}
+		
+		List<WebElement> input = driver.findElements(By.tagName("input"));
+		System.out.println(input.size());
+		
 		driver.quit();
 	}
 
