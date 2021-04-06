@@ -16,11 +16,19 @@ import io.cucumber.java.en.When;
 public class StepDefinitions {
 
 	private WebDriver driver;
+	
+		@Given("I open {string}")
+		public void i_open(String browser) {
+			DriverCreator creator = new DriverCreator();
+			driver = creator.createBrowser(browser);
+		}
+
 
 	@Given("I navigate to MarshuCalculator")
 	public void i_navigate_to_marshu_calculator() throws InterruptedException {
-		System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Selenium\\chromedriver.exe");
-		driver = new ChromeDriver();
+//		System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Selenium\\chromedriver.exe");
+//		driver = new ChromeDriver();
+				
 		driver.get("https://www.marshu.com/articles/calculate-addition-calculator-add-two-numbers.php");
 		Thread.sleep(3000);
 	}
